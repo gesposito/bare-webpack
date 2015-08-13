@@ -4,7 +4,7 @@
   "description": "Babel, React and webpack",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "TARGET=build webpack",
     "dev": "TARGET=dev webpack-dev-server"
   },
   "author": "Gianluca Esposito",
@@ -16,6 +16,7 @@
     "css-loader": "^0.16.0",
     "eslint": "^1.1.0",
     "eslint-plugin-react": "^3.2.2",
+    "extract-text-webpack-plugin": "^0.8.2",
     "html-webpack-plugin": "^1.6.1",
     "style-loader": "^0.12.3",
     "webpack": "^1.11.0",

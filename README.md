@@ -19,6 +19,6 @@ Will start a [webpack-dev-server](http://webpack.github.io/docs/webpack-dev-serv
 
 ## Build
 
-`npm build`
+`npm run build`
 
 Will output a bundle in `build` folder
