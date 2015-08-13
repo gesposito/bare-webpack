@@ -9,12 +9,16 @@ boilerplate assembled following instructions from
 
 ## Install
 
-npm install
+`npm install`
 
 ## Run
 
-npm run dev
+`npm run dev`
+
+Will start a [webpack-dev-server](http://webpack.github.io/docs/webpack-dev-server.html) (live reloads) on http://localhost:8080/
 
 ## Build
 
-npm build
+`npm build`
+
+Will output a bundle in `build` folder

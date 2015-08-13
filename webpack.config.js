@@ -28,7 +28,7 @@ var common = {
       include: APP_PATH
     }]
   },
-  plugins: [new HtmlWebpackPlugin()] // Generates index.hml in output path
+  plugins: [new HtmlWebpackPlugin()] // Generates index.hml in 'output' path
 };
 
 if (TARGET === 'dev') {
