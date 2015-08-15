@@ -15,9 +15,9 @@ boilerplate assembled following instructions from
 
 `npm run dev`
 
-Will start a `[webpack-dev-server](http://webpack.github.io/docs/webpack-dev-server.html)` (live reloads) on
+Will start a [webpack-dev-server](http://webpack.github.io/docs/webpack-dev-server.html) (live reloads) on
 http://localhost:8080/
-featuring `[react-hot-loader](http://gaearon.github.io/react-hot-loader/)` (hot reloads)
+featuring [react-hot-loader](http://gaearon.github.io/react-hot-loader/) (hot reloads)
 
 ## Build
 
