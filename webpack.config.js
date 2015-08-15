@@ -9,6 +9,7 @@ var NODEMODULES_PATH = path.resolve(ROOT_PATH, 'node_modules');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
 
+var Clean = require('clean-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -25,11 +26,7 @@ var common = {
     filename: 'bundle.js',
   },
   module: {
-    loaders: [{
-      test: /\.(js|jsx)?$/,
-      loaders: ['babel?stage=0'],
-      include: APP_PATH
-    }]
+    loaders: []
   },
   plugins: [
     new HtmlWebpackPlugin(), // Generates index.hml in 'output' path
@@ -37,9 +34,7 @@ var common = {
   ]
 };
 
-var deps = [
-  'react/dist/react.min.js'
-];
+var deps = [];
 
 if (TARGET === 'development') {
   var config = {
@@ -51,19 +46,24 @@ if (TARGET === 'development') {
         test: /\.css$/, // Only .css files
         loader: 'style!css', // Run both loaders
         include: APP_PATH
+      }, {
+        test: /\.(js|jsx)?$/,
+        loaders: ['react-hot', 'babel?stage=0'],
+        include: APP_PATH
       }],
       noParse: []
     },
     devtool: 'eval',
     devServer: {
+      inline: true,
       colors: true,
       historyApiFallback: true,
       hot: true,
-      inline: true,
       progress: true
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin()
     ]
   }
 
@@ -83,12 +83,23 @@ if (TARGET === 'production') {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css'),
         include: APP_PATH
+      }, {
+        test: /\.(js|jsx)?$/,
+        loaders: ['babel?stage=0'],
+        include: APP_PATH
       }]
     },
     plugins: [
-      new ExtractTextPlugin('styles.css')
+      new Clean(['build']),
+      new ExtractTextPlugin('styles.css'),
+      new webpack.DefinePlugin({
+        'process.env': {
+          // This affects react lib size
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
     ]
   }
-  
+
   module.exports = merge(common, config);
 }

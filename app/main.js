@@ -8,5 +8,14 @@ import App from './components/App';
 
   document.body.appendChild(app);
 
-  React.render(<App/>, app);
+  var rootInstance = React.render(<App/>, app);
+
+  if (module.hot) {
+    require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
+      getRootInstances: function() {
+        // Help React Hot Loader figure out the root component instances on the page:
+        return [rootInstance];
+      }
+    });
+  }
 })();
