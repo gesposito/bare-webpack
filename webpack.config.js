@@ -11,7 +11,7 @@ var webpack = require('webpack');
 var merge = require('webpack-merge');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var common = {
   entry: [path.resolve(APP_PATH, 'main')],
@@ -22,10 +22,17 @@ var common = {
     path: BUILD_PATH,
     filename: 'bundle.js',
   },
+  module: {
+    loaders: [{
+      test: /\.(js|jsx)?$/,
+      loaders: ['babel?stage=0'],
+      include: APP_PATH
+    }]
+  },
   plugins: [new HtmlWebpackPlugin()] // Generates index.hml in 'output' path
 };
 
-if (TARGET === 'dev') {
+if (TARGET === 'development') {
   module.exports = merge(common, {
     resolve: {
       alias: {
@@ -37,9 +44,6 @@ if (TARGET === 'dev') {
         test: /\.css$/, // Only .css files
         loader: 'style!css', // Run both loaders
         include: APP_PATH
-      }, {
-        test: /\.(js|jsx)$/, // A regexp to test the require path. accepts either js or jsx
-        loader: 'babel?stage=0', // The module to load. "babel" is short for "babel-loader"
       }],
       noParse: [REACT_PATH]
     },
@@ -57,16 +61,12 @@ if (TARGET === 'dev') {
   });
 }
 
-if (TARGET === 'build') {
+if (TARGET === 'production') {
   module.exports = merge(common, {
     module: {
       loaders: [{
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css'),
-        include: APP_PATH
-      }, {
-        test: /\.(js|jsx)?$/,
-        loaders: ['babel?stage=0'],
         include: APP_PATH
       }]
     },

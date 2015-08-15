@@ -4,8 +4,8 @@
   "description": "Babel, React and webpack",
   "main": "index.js",
   "scripts": {
-    "build": "TARGET=build webpack",
-    "dev": "TARGET=dev webpack-dev-server"
+    "build": "TARGET=production webpack",
+    "dev": "TARGET=development webpack-dev-server"
   },
   "author": "Gianluca Esposito",
   "license": "MIT",
