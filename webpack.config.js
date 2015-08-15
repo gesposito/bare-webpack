@@ -98,6 +98,11 @@ if (TARGET === 'production') {
           'NODE_ENV': JSON.stringify('production')
         }
       }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        },
+      }),
     ]
   }
 
