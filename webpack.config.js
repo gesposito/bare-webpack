@@ -90,7 +90,7 @@ if (TARGET === 'production') {
       }]
     },
     plugins: [
-      new Clean(['build']),
+      new Clean(['dist']),
       new ExtractTextPlugin('styles.css'),
       new webpack.DefinePlugin({
         'process.env': {
@@ -102,7 +102,7 @@ if (TARGET === 'production') {
         compress: {
           warnings: false
         },
-      }),
+      })
     ]
   }
 
