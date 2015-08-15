@@ -3,7 +3,7 @@ var path = require('path');
 var TARGET = process.env.TARGET;
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'app');
-var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
+var DIST_PATH = path.resolve(ROOT_PATH, 'dist');
 var NODEMODULES_PATH = path.resolve(ROOT_PATH, 'node_modules');
 var REACT_PATH = path.resolve(NODEMODULES_PATH, 'react/dist/react.min.js');
 
@@ -19,7 +19,7 @@ var common = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: BUILD_PATH,
+    path: DIST_PATH,
     filename: 'bundle.js',
   },
   module: {
